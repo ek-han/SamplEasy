@@ -1,3 +1,4 @@
+from lib2to3.pgen2 import token
 from fastapi import FastAPI
 import httpx
 from urllib import request
@@ -16,7 +17,7 @@ target_key = 1 # 0 - 11
 popularity = 30 # / 100
 tempo = 150 # beats per minute
 
-@app.get("/get_categories")
+@app.get("/get_recommendations")
 def get_recommendations(genre, target_key, popularity, tempo):
     type = "track"
     
@@ -24,10 +25,9 @@ def get_recommendations(genre, target_key, popularity, tempo):
     url = f"https://api.spotify.com/v1/recommendations?seed_genres={genre}&target_key={target_key}&target_popularity={popularity}&target_tempo={tempo}&type={type}"
 
     headers = CaseInsensitiveDict()
-
-    token = 'BQCgRqyY2bN4aHKAPwqkvrB3HMHId4M7eM_9nprphvxyNGUL3fhfU5NkivgD_T5rPRFV6dIADDj1GwBgKWwjxVSUPvO3DahHf6ZM7Q2uZ8yGGkpLtSfFMFCxstgdlw7F9n9rk9aKHpUbg7jhuXf-kFr_of2rgAKNxjWtnxbd4CjU-EfhFbKa865K9JI'
+    
     headers ["Accept"] = "application/json"
-    headers ["Authorization"]= f"Bearer {token}"
+    headers ["Authorization"]= f"Bearer <MY_TOKEN>"
 
 
     response = requests.get(url = url,headers=headers)
