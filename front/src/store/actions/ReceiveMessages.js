@@ -1,6 +1,6 @@
 import request from "@/api/http";
 
-export const loadGenreSeeds = () => {
+export const receiveMessages = () => {
   const query = {
     method: "GET",
     url: "http://localhost:8000/getAllMessages",
