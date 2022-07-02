@@ -12,7 +12,14 @@ export default {
   name: "LoginView",
   data() {
     return {
-      connectLink: `http://accounts.spotify.com/authorize?client_id=28ffcff09ef14b88883d00d860f4c680&response_type=token&redirect_uri=http://localhost:8080/callback&scope=user-read-recently-played&show_dialog=true`,
+      connectLink:
+        "http://accounts.spotify.com/authorize?" +
+        "client_id=28ffcff09ef14b88883d00d860f4c680&" +
+        "client_secret=9e206a28d9934fd9812251d25de963f5&" +
+        "response_type=token&" +
+        "redirect_uri=http://localhost:8080/callback&" +
+        "scope=user-top-read&" +
+        "show_dialog=true",
     };
   },
   methods: {
