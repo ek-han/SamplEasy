@@ -19,3 +19,7 @@ def get_categories():
 
 
 get_categories()
+
+@app.post("/send_message")
+def send_message(username, content)
+    return (data)
