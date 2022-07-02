@@ -14,8 +14,8 @@
       <input v-model="msg" />
       <button @click="sendMessage">send</button>
       <button @click="receiveMessages">receive</button>
+      <div v-for="(m, i) in msgs" :key="i">{{ m }}</div>
     </div>
-    <div v-for="(m, i) in msgs" :key="i">{{ m }}</div>
   </div>
 </template>
 
@@ -59,6 +59,7 @@ export default {
     },
     receiveMessages() {
       this.$store.dispatch("receiveMessages").then((msgs) => {
+        console.log("RECEIVED:", msgs);
         this.msgs = msgs;
       });
     },
