@@ -1,31 +1,31 @@
 <template>
-  <div>
-    <div>Home</div>
-    <button @click="disconnect">Disconnect</button>
-    <button @click="load">Load</button>
-    <div class="category">
-      <div>Genre Seeds:</div>
-      <div class="item" v-for="g in genreSeeds" :key="g">{{ g }}</div>
+  <div class="home">
+    <header-component />
+    <div class="content">
+      <chat-component v-if="activeTab === 'chat'" />
+      <my-gallery v-if="activeTab === 'gallery'" />
+      <browse-music v-if="activeTab === 'music'" />
     </div>
   </div>
 </template>
 
 <script>
-import storageService from "@/helpers/storage";
 import { mapGetters } from "vuex";
+import HeaderComponent from "@/components/HeaderComponent";
+import BrowseMusic from "@/components/BrowseMusic";
+import ChatComponent from "@/components/ChatComponent";
+import MyGallery from "@/components/MyGallery";
 
 export default {
   name: "HomeVue",
+  components: { MyGallery, ChatComponent, BrowseMusic, HeaderComponent },
   computed: {
     ...mapGetters({
       genreSeeds: "genreSeeds",
+      activeTab: "activeTab",
     }),
   },
   methods: {
-    disconnect() {
-      storageService.removeValue("token");
-      this.$router.push({ name: "login" });
-    },
     load() {
       this.$store.dispatch("loadGenreSeeds");
     },
@@ -34,11 +34,14 @@ export default {
 </script>
 
 <style scoped>
-.category {
-  margin-top: 10px;
+.home {
+  height: 100%;
+  width: 100%;
+  background-color: #091227;
+  position: relative;
 }
-.item {
-  margin-left: 5px;
-  margin-top: 2px;
+.content {
+  width: 100%;
+  position: relative;
 }
 </style>

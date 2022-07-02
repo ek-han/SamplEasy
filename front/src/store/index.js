@@ -7,14 +7,20 @@ import * as actions from "./actions/index";
 
 export default new Vuex.Store({
   state: {
+    activeTab: "music",
     artists: [],
     genres: [],
     genreSeeds: [],
+    recommendations: [],
   },
   getters: {
     artists: (state) => state.artists,
     genres: (state) => state.genres,
     genreSeeds: (state) => state.genreSeeds,
+    activeTab: (state) => state.activeTab,
+    recommendations: (state) => state.recommendations,
+    selectedGenres: (state) =>
+      state.genreSeeds.filter((gs) => gs.selected).map((gs) => gs.name),
   },
   mutations: {
     setArtistsAndGenres(state, items) {
@@ -24,8 +30,31 @@ export default new Vuex.Store({
       ];
     },
     SetGenreSeeds(state, seeds) {
-      state.genreSeeds = seeds;
+      if (state.genreSeeds.length === 0) {
+        state.genreSeeds = seeds.map((gs) => {
+          return {
+            name: gs,
+            selected: false,
+          };
+        });
+      }
     },
+    changeActiveTab(state, tab) {
+      state.activeTab = tab;
+    },
+    setRecommendations(state, data) {
+      state.recommendations = data;
+    },
+    // toggleGenre(state, genre) {
+    //   const idx = state.genreSeeds.findIndex((gs) => gs.name === genre.name);
+    //   if (idx !== -1) {
+    //     Vue.set(
+    //       state.genreSeeds[idx],
+    //       "selected",
+    //       !state.genreSeeds[idx].selected
+    //     );
+    //   }
+    // },
   },
   actions,
   modules: {},
