@@ -10,9 +10,11 @@
       />
       <span class="login-text">Login with Spotify</span>
     </button>
-    <input v-model="msg" />
-    <button @click="sendMessage">send</button>
-    <button @click="receiveMessages">receive</button>
+    <div>
+      <input v-model="msg" />
+      <button @click="sendMessage">send</button>
+      <button @click="receiveMessages">receive</button>
+    </div>
     <div v-for="(m, i) in msgs" :key="i">{{ m }}</div>
   </div>
 </template>
