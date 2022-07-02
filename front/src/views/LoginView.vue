@@ -12,6 +12,8 @@
     </button>
     <input v-model="msg" />
     <button @click="sendMessage">send</button>
+    <button @click="receiveMessages">receive</button>
+    <div v-for="(m, i) in msgs" :key="i">{{ m }}</div>
   </div>
 </template>
 
@@ -23,6 +25,7 @@ export default {
   data() {
     return {
       msg: "",
+      msgs: [],
       connectLink:
         "http://accounts.spotify.com/authorize?" +
         "client_id=28ffcff09ef14b88883d00d860f4c680&" +
@@ -51,6 +54,11 @@ export default {
     },
     sendMessage() {
       this.$store.dispatch("sendMessage", { msg: this.msg });
+    },
+    receiveMessages() {
+      this.$store.dispatch("receiveMessages").then((msgs) => {
+        this.msgs = msgs;
+      });
     },
   },
 };
