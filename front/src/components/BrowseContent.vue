@@ -1,7 +1,24 @@
 <template>
   <div class="browse-wrapper">
-    <div v-if="selectedGenres.length === 0">No Genre Selected</div>
-    <div v-else class="browse-content">
+    <button @click="$emit('changeView')">Change Filters</button>
+    <div class="current-filters-wrapper">
+      <div>
+        <div v-if="filters.key !== null">
+          Key: {{ availableKeys[filters.key] }}
+        </div>
+        <div v-if="filters.tempo !== null">Tempo: {{ filters.tempo }}</div>
+        <div v-if="filters.genres.length !== 0">
+          Genres:
+          <span
+            style="margin-left: 5px"
+            v-for="(g, i) in filters.genres"
+            :key="i"
+            >{{ g }}</span
+          >
+        </div>
+      </div>
+    </div>
+    <div class="browse-content">
       <div v-for="r in recommendations" :key="r.id">
         {{ r.name }} {{ r.mainArtist }} {{ r.popularity }}
       </div>
@@ -16,13 +33,13 @@ export default {
   name: "BrowseContent",
   computed: {
     ...mapGetters({
-      selectedGenres: "selectedGenres",
       recommendations: "recommendations",
+      filters: "filters",
+      availableKeys: "availableKeys",
     }),
   },
   mounted() {
-    if (this.selectedGenres.length !== 0)
-      this.$store.dispatch("GetRecommendations");
+    this.$store.dispatch("GetRecommendations");
   },
 };
 </script>
