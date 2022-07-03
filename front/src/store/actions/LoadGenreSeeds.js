@@ -7,7 +7,6 @@ export const loadGenreSeeds = ({ commit }) => {
   };
 
   return request(query).then((data) => {
-    console.log("Data:", data);
     commit("SetGenreSeeds", data.genres);
   });
 };
