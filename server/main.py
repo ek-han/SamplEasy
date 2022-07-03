@@ -1,4 +1,7 @@
+from collections import UserDict
 from lib2to3.pgen2 import token
+from pickle import TRUE
+from sys import gettrace
 from fastapi import (
     FastAPI, WebSocket, WebSocketDisconnect, Request, Response)
 from typing import List
@@ -11,13 +14,11 @@ from chat_utility import *
 from typing import List
 from pydantic import BaseModel
 from fastapi.templating import Jinja2Templates
-
-
+import pymongo
 
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-
 
 origins = [
     "http://localhost",
@@ -40,7 +41,98 @@ target_key = 1 # 0 - 11
 popularity = 30 # / 100
 tempo = 150 # beats per minute
 
-templates = Jinja2Templates(directory="templates")
+# templates = Jinja2Templates(directory="templates")
+
+
+url = "mongodb+srv://Cherlord1:Cherlord1@cluster0.2img3.mongodb.net/?retryWrites=true&w=majority"
+client = pymongo.MongoClient(url)
+db = client["Database"]
+
+acc_table = db["Accounts"]
+track_table = db['Tracks']
+
+# acc_table.insert_one({'t':1})
+# track_table.insert_one({'t':1})
+# print(track_table.find({}))
+
+track_table.delete_many({})
+
+# name of fields
+track_arr_id = 'track_id'  # track
+user_id = 'user_id' # PK for acc, FK for track
+password_id = 'password' # acc
+
+# add a track to user favorites -- works!
+@app.get('/favorite')
+def favorite(userid, trackid):
+    track_table.update_one(
+        { user_id : userid },
+        { '$push' : { track_arr_id : trackid } }
+    , upsert= True)
+    
+    print('success favoriting')
+    
+
+# works!
+@app.get('/get_tracks')
+def get_tracks(userid):
+    docs = track_table.find({ user_id : userid })
+    arr = list(docs)
+    return arr
+
+# works!
+@app.post('/remove_track')
+def remove_track(userid, trackid):
+    track_table.update_one(
+        { user_id : userid },
+        { '$pull' : { track_arr_id : trackid } }    
+    )
+    
+    print('success deleting from favorite')
+
+# testm above 3 methods
+# favorite(1, '23')
+# favorite(1, '233')
+# favorite(32, '234')
+# print(get_tracks(1))
+# remove_track(1, '233')
+# print(get_tracks(1))
+
+# works
+@app.post('/signup')
+def signup(username, password):
+    acc_table.update_one(
+        { user_id : username },
+        { '$set' : {user_id : username, password_id : password} },
+        upsert=True
+    )
+    
+# test signup
+# signup('user', 'pw')
+# print(list(acc_table.find({})))
+
+# returns a dictionary of the information of the user if exists, else return None
+# right now only username and id
+# EX. {'_id': ObjectId('62c10e82620f75cc285a4e87'), 'user_id': 'user', 'password': 'pw'}
+@app.get('/login')
+def login(username, password): 
+    return acc_table.find_one({ user_id : username, password_id : password })
+
+print(login('user', 'pw'))
+
+
+
+# @app.post('/get_favorites')
+
+# '''
+# Track Table:
+#   - TrackID
+#   - UserID
+# AddTrack(UserId, TrackId)
+# RemoveTrack(UserId, TrackId)
+# GetTracks(userId): [trackIds] 
+# '''
+
 
 
 @app.get("/")

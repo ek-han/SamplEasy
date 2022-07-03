@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/brayton/Desktop/Visual Studio Projects/Hackerland 2022/Placeholder-rename-2/.venv"
+VIRTUAL_ENV="/Users/brayton/Desktop/Visual Studio Projects/Hackerland 2022/SamplEasy/.venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

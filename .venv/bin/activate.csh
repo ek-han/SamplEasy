@@ -8,7 +8,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-setenv VIRTUAL_ENV "/Users/brayton/Desktop/Visual Studio Projects/Hackerland 2022/Placeholder-rename-2/.venv"
+setenv VIRTUAL_ENV "/Users/brayton/Desktop/Visual Studio Projects/Hackerland 2022/SamplEasy/.venv"
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/bin:$PATH"
