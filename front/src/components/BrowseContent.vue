@@ -1,7 +1,7 @@
 <template>
   <div class="browse-wrapper">
     <filter-info @changeView="$emit('changeView')" />
-    <track-list :track="recommendations" />
+    <track-list :tracks="recommendations" />
   </div>
 </template>
 
@@ -27,10 +27,5 @@ export default {
 <style scoped>
 .browse-wrapper {
   margin-left: 10px;
-}
-.browse-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 }
 </style>

@@ -24,6 +24,8 @@ export const GetRecommendations = ({ getters, commit }) => {
         name: t.name,
         popularity: t.popularity,
         mainArtist: t.artists[0].name,
+        img: t.album.images[2].url,
+        album: t.album.name,
       };
     });
     commit("setRecommendations", dataFormatted);

@@ -13,7 +13,7 @@ export default new Vuex.Store({
     genreSeeds: [],
     recommendations: [],
     filters: {
-      genres: [],
+      genres: ["techno"],
       tempo: null,
       key: null,
     },

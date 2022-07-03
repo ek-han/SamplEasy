@@ -17,7 +17,7 @@ export default {};
 
 body {
   height: 100vh;
-  width: 100vw;
+  background-color: #091227;
 }
 
 #app {
