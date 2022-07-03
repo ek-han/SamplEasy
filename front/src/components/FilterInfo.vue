@@ -7,7 +7,9 @@
     <div class="current-filters-wrapper">
       <div class="current-filter">
         <div class="filer-name">Key:</div>
-        <div class="filter-value">{{ filters.key ? availableKeys[filters.key] : "none" }}</div>
+        <div class="filter-value">
+          {{ filters.key ? availableKeys[filters.key] : "none" }}
+        </div>
       </div>
       <div class="current-filter">
         <div class="filer-name">Tempo:</div>
@@ -17,6 +19,10 @@
         <div class="filer-name">Genres:</div>
         <div v-if="filters.genres.length === 0" class="filter-value">none</div>
         <div v-else class="filter-value">{{ filters.genres.join(", ") }}</div>
+      </div>
+      <div class="current-filter">
+        <div class="filer-name">Popularity:</div>
+        <div class="filter-value">{{ filters.popularity?.name || "none" }}</div>
       </div>
     </div>
   </div>
@@ -59,6 +65,6 @@ export default {
   display: flex;
 }
 .filer-name {
-  width: 5rem;
+  width: 7.25rem;
 }
 </style>

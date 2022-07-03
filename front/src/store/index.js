@@ -16,6 +16,7 @@ export default new Vuex.Store({
       genres: ["techno"],
       tempo: null,
       key: null,
+      popularity: null,
     },
     availableKeys: [
       "C",
@@ -31,6 +32,24 @@ export default new Vuex.Store({
       "A#",
       "B",
     ],
+    popularityType: [
+      {
+        name: "Not at all",
+        value: 25,
+      },
+      {
+        name: "A little popular",
+        value: 50,
+      },
+      {
+        name: "Popular",
+        value: 75,
+      },
+      {
+        name: "The best Hits",
+        value: 100,
+      },
+    ],
   },
   getters: {
     artists: (state) => state.artists,
@@ -40,6 +59,7 @@ export default new Vuex.Store({
     filters: (state) => state.filters,
     recommendations: (state) => state.recommendations,
     availableKeys: (state) => state.availableKeys,
+    popularityType: (state) => state.popularityType,
     selectedGenres: (state) =>
       state.genreSeeds.filter((gs) => gs.selected).map((gs) => gs.name),
     filterIsEmpty: (state) =>
@@ -64,10 +84,10 @@ export default new Vuex.Store({
       state.recommendations = data;
     },
     saveFilters(state, payload) {
-      console.log("P:", payload);
       state.filters.tempo = payload.tempo;
       state.filters.key = payload.key;
       state.filters.genres = payload.selectedGenres;
+      state.filters.popularity = payload.popularity;
     },
   },
   actions,

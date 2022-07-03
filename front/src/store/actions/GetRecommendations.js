@@ -8,7 +8,12 @@ export const GetRecommendations = ({ getters, commit }) => {
     searchTab.push(`seed_genres=${filters.genres.join(",")}`);
   if (filters.key !== null) searchTab.push(`target_key=${filters.key}`);
   if (filters.tempo !== null) searchTab.push(`target_tempo=${filters.tempo}`);
-
+  if (filters.popularity !== null)
+    searchTab.push(
+      `min_popularity=${filters.popularity.value - 25}&max_popularity=${
+        filters.popularity.value
+      }`
+    );
   const query = {
     method: "GET",
     url: `https://api.spotify.com/v1/recommendations?${searchTab.join("&")}`,

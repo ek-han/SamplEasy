@@ -20,6 +20,18 @@
           </div>
         </div>
       </div>
+      <div class="popularity-wrapper">
+        <div class="popularity-title">Popularity</div>
+        <div
+          v-for="(k, i) in popularityType"
+          :key="i"
+          class="genre-input"
+          :class="{ selected: popularity && popularity.value === k.value }"
+          @click="popularity = k"
+        >
+          {{ k.name }}
+        </div>
+      </div>
       <div class="genre-wrapper">
         <div class="genre-text">
           You can select up to 5 genres ({{ selectedGenres.length }}/5)
@@ -55,12 +67,14 @@ export default {
       tempo: null,
       key: null,
       selectedGenres: [],
+      popularity: null,
     };
   },
   computed: {
     ...mapGetters({
       genreSeeds: "genreSeeds",
       availableKeys: "availableKeys",
+      popularityType: "popularityType",
     }),
     filterIsEmpty() {
       return (
@@ -93,6 +107,7 @@ export default {
         tempo: this.tempo,
         key: this.key,
         selectedGenres: this.selectedGenres,
+        popularity: this.popularity,
       });
       this.$emit("changeView");
     },
@@ -115,6 +130,10 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+.popularity-wrapper {
+  display: flex;
+  gap: 10px;
 }
 .tempo-wrapper {
   display: flex;
