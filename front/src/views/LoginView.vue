@@ -1,7 +1,6 @@
 <template>
   <div class="login">
-    <div class="logo"></div>
-    <div class="welcome-text">Welcome</div>
+    <div class="welcome-text">SamplEasy</div>
     <button class="login-button" @click="connect">
       <img
         class="spotify-logo"
@@ -10,12 +9,6 @@
       />
       <span class="login-text">Login with Spotify</span>
     </button>
-    <div>
-      <input v-model="msg" />
-      <button @click="sendMessage">send</button>
-      <button @click="receiveMessages">receive</button>
-      <div v-for="(m, i) in msgs" :key="i">{{ m }}</div>
-    </div>
   </div>
 </template>
 
@@ -79,48 +72,35 @@ export default {
   align-content: center;
   justify-content: center;
   align-items: center;
-  gap: 6em;
-  background: linear-gradient(
-    85.99deg,
-    #a5d4f7 -5.26%,
-    #d6eaff 6.54%,
-    #e3f2ff 12.44%,
-    #091227 89.06%
-  );
+  gap: 4em;
 }
-.logo {
-  width: 430px;
-  height: 260px;
-  left: 425px;
-  top: 146px;
 
-  background: #d9d9d9;
-}
 .welcome-text {
   width: 386px;
   height: 24px;
-  left: 448px;
   top: 562px;
 
-  font-family: "Roboto Condensed", sans-serif;
-  font-style: italic;
+  font-family: "Gotham", sans-serif;
   font-weight: 700;
-  font-size: 60px;
+  font-size: 80px;
   line-height: 24px;
 
   display: flex;
   align-items: center;
-  text-transform: uppercase;
+  align-content: center;
+  justify-content: center;
 
-  color: #000000;
+  color: white;
 }
 .login-button {
   box-sizing: border-box;
 
-  width: 716px;
+  width: 500px;
   height: 124px;
-  left: 275px;
   top: 697px;
+
+  align-content: center;
+  justify-content: center;
 
   background: rgba(255, 255, 255, 0.05);
   border: 3px solid rgba(0, 0, 0, 0.31);
@@ -142,6 +122,8 @@ export default {
   height: 78px;
 }
 .login-text {
-  font-size: 3em;
+  font-family: "Gotham", sans-serif;
+  font-size: 2em;
+  color: white;
 }
 </style>

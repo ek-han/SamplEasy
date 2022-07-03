@@ -34,19 +34,19 @@ export default new Vuex.Store({
     ],
     popularityType: [
       {
-        name: "Not at all",
+        name: "rare",
         value: 25,
       },
       {
-        name: "A little popular",
+        name: "obscure",
         value: 50,
       },
       {
-        name: "Popular",
+        name: "popular",
         value: 75,
       },
       {
-        name: "The best Hits",
+        name: "greatest hits",
         value: 100,
       },
     ],

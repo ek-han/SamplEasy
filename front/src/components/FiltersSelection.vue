@@ -1,13 +1,13 @@
 <template>
   <div class="filter-selection">
-    <div class="filer-title">Filter Your Music!</div>
+    <div class="filter-title">FILTER</div>
     <div class="filter-wrapper">
       <div class="tempo-wrapper">
-        <div class="tempo-text">Tempo</div>
+        <div class="input-text">Tempo (bpm):</div>
         <input type="number" v-model="tempo" />
       </div>
       <div class="key-wrapper">
-        <div class="key-text">Key</div>
+        <div class="input-text">Key:</div>
         <div class="genre-input-wrapper left">
           <div
             v-for="(k, i) in availableKeys"
@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="popularity-wrapper">
-        <div class="popularity-title">Popularity</div>
+        <div class="input-text">Popularity:</div>
         <div
           v-for="(k, i) in popularityType"
           :key="i"
@@ -33,9 +33,7 @@
         </div>
       </div>
       <div class="genre-wrapper">
-        <div class="genre-text">
-          You can select up to 5 genres ({{ selectedGenres.length }}/5)
-        </div>
+        <div class="input-text">({{ selectedGenres.length }}/5) Genres:</div>
         <div class="genre-input-wrapper">
           <div
             v-for="(gs, i) in genreSeeds"
@@ -51,7 +49,7 @@
     </div>
     <div class="button-wrapper">
       <button class="button" :disabled="filterIsEmpty" @click="saveAndBrowse">
-        Filter
+        BROWSE
       </button>
     </div>
   </div>
@@ -118,18 +116,23 @@ export default {
 <style lang="scss" scoped>
 .filter-selection {
   font-size: 1.5rem;
+  font-family: "GothamThin", sans-serif;
   margin: 10px;
 }
-.filer-title {
-  font-size: 3rem;
+.filter-title {
+  font-family: "Gotham", sans-serif;
+  font-size: 4rem;
   display: flex;
   justify-content: center;
-  text-decoration: underline;
+  margin-bottom: 50px;
+  margin-top: 30px;
 }
 .filter-wrapper {
+  margin-left: 50px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-bottom: -30px;
 }
 .popularity-wrapper {
   display: flex;
@@ -139,9 +142,10 @@ export default {
   display: flex;
   gap: 10px;
 }
-.key-text {
+.input-text {
   display: flex;
   align-items: center;
+  font-family: "GothamBold", sans-serif;
 }
 .genre-input-wrapper {
   position: relative;
@@ -178,8 +182,11 @@ export default {
 .button {
   font-size: 3rem;
   padding: 10px 30px;
-  background-color: #03a9f1;
+  font-family: "GothamBold", sans-serif;
+  background-color: #1db954;
   border-radius: 10px;
+  border-color: white;
   color: white;
+  margin-bottom: 40px;
 }
 </style>

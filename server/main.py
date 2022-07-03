@@ -75,3 +75,5 @@ async def chat(websocket: WebSocket):
             manager.disconnect(websocket, sender)
             response['message'] = "left"
             await manager.broadcast(response)
+
+        

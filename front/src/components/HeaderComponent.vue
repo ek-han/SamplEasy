@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="logo">LOGO</div>
+    <div class="logo">SamplEasy</div>
     <div class="navigation">
       <div
         class="navigation-text"
@@ -18,7 +18,7 @@
         }"
         @click="navigate('gallery')"
       >
-        My Gallery
+        Favorites
       </div>
       <div
         class="navigation-text"
@@ -27,9 +27,9 @@
         }"
         @click="navigate('music')"
       >
-        Browse Music
+        Browse
       </div>
-      <button class="button" @click="disconnect">Disconnect</button>
+      <button class="button" @click="disconnect">SIGN OUT</button>
     </div>
   </div>
 </template>
@@ -68,26 +68,29 @@ export default {
   left: 0;
   top: 0;
   filter: drop-shadow(0px 6px 6px rgba(0, 83, 125, 0.1));
+  font-family: "Gotham", sans-serif;
 }
 .logo {
-  font-size: 5em;
+  font-size: 4em;
+  font-weight: 550;
   height: 100%;
   width: 5em;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  left: 0;
+  left: 50px;
+  color: white;
 }
 .navigation {
-  font-size: 2.8rem;
+  font-size: 2.15rem;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
   right: 50px;
-  gap: 2.7rem;
+  gap: 7rem;
 }
 .navigation-text {
   color: white;
@@ -102,10 +105,13 @@ export default {
   }
 }
 .button {
+  font-family: "GothamBold", sans-serif;
   font-size: 1rem;
-  padding: 10px 20px;
-  background-color: #b00505;
+  padding: 4px 8px;
+  background-color: #1db954;
   border-radius: 10px;
+  border-color: white;
   color: white;
+  height: 35px;
 }
 </style>

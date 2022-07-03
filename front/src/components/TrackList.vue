@@ -33,7 +33,7 @@ export default {
   align-items: center;
 }
 .track {
-  width: 80%;
+  width: 85%;
   display: flex;
   gap: 10px;
 }
