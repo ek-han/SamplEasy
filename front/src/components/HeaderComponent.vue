@@ -29,8 +29,8 @@
       >
         Browse Music
       </div>
+      <button class="button" @click="disconnect">Disconnect</button>
     </div>
-    <button @click="disconnect">Disconnect</button>
   </div>
 </template>
 
@@ -82,12 +82,11 @@ export default {
 .navigation {
   font-size: 2.8rem;
   height: 100%;
-  width: 50rem;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  right: 0;
+  right: 50px;
   gap: 2.7rem;
 }
 .navigation-text {
@@ -101,5 +100,12 @@ export default {
     transform: translateY(-10px);
     transition: all 0.3s ease;
   }
+}
+.button {
+  font-size: 1rem;
+  padding: 10px 20px;
+  background-color: #b00505;
+  border-radius: 10px;
+  color: white;
 }
 </style>

@@ -1,41 +1,21 @@
 <template>
   <div class="browse-wrapper">
-    <button @click="$emit('changeView')">Change Filters</button>
-    <div class="current-filters-wrapper">
-      <div>
-        <div v-if="filters.key !== null">
-          Key: {{ availableKeys[filters.key] }}
-        </div>
-        <div v-if="filters.tempo !== null">Tempo: {{ filters.tempo }}</div>
-        <div v-if="filters.genres.length !== 0">
-          Genres:
-          <span
-            style="margin-left: 5px"
-            v-for="(g, i) in filters.genres"
-            :key="i"
-            >{{ g }}</span
-          >
-        </div>
-      </div>
-    </div>
-    <div class="browse-content">
-      <div v-for="r in recommendations" :key="r.id">
-        {{ r.name }} {{ r.mainArtist }} {{ r.popularity }}
-      </div>
-    </div>
+    <filter-info @changeView="$emit('changeView')" />
+    <track-list :track="recommendations" />
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import FilterInfo from "@/components/FilterInfo";
+import TrackList from "@/components/TrackList";
 
 export default {
   name: "BrowseContent",
+  components: { TrackList, FilterInfo },
   computed: {
     ...mapGetters({
       recommendations: "recommendations",
-      filters: "filters",
-      availableKeys: "availableKeys",
     }),
   },
   mounted() {
@@ -45,6 +25,9 @@ export default {
 </script>
 
 <style scoped>
+.browse-wrapper {
+  margin-left: 10px;
+}
 .browse-content {
   display: flex;
   flex-direction: column;

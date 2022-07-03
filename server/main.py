@@ -40,7 +40,7 @@ class Model(BaseModel):
 
 @app.post("/send_message")
 def addMessage(data: Model):
-    
+        
     doc = {
         message : data.msg,
         created_at : datetime.datetime.utcnow()

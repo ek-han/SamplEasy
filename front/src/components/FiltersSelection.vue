@@ -37,7 +37,11 @@
         </div>
       </div>
     </div>
-    <button @click="saveAndBrowse">Filter</button>
+    <div class="button-wrapper">
+      <button class="button" :disabled="filterIsEmpty" @click="saveAndBrowse">
+        Filter
+      </button>
+    </div>
   </div>
 </template>
 
@@ -58,6 +62,13 @@ export default {
       genreSeeds: "genreSeeds",
       availableKeys: "availableKeys",
     }),
+    filterIsEmpty() {
+      return (
+        this.tempo === null &&
+        this.key === null &&
+        this.selectedGenres.length === 0
+      );
+    },
   },
   created() {
     this.$store.dispatch("loadGenreSeeds");
@@ -72,10 +83,9 @@ export default {
         this.selectedGenres.splice(idx, 1);
       }
     },
-    maxGenreSelected(gs) {
+    maxGenreSelected(genre) {
       return (
-        this.selectedGenres.length >= 5 &&
-        !this.selectedGenres.includes(gs.name)
+        this.selectedGenres.length >= 5 && !this.selectedGenres.includes(genre)
       );
     },
     saveAndBrowse() {
@@ -92,10 +102,27 @@ export default {
 
 <style lang="scss" scoped>
 .filter-selection {
+  font-size: 1.5rem;
+  margin: 10px;
+}
+.filer-title {
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  text-decoration: underline;
+}
+.filter-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 .tempo-wrapper {
   display: flex;
   gap: 10px;
+}
+.key-text {
+  display: flex;
+  align-items: center;
 }
 .genre-input-wrapper {
   position: relative;
@@ -123,5 +150,17 @@ export default {
   &.selected {
     background-color: #162d57;
   }
+}
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+.button {
+  font-size: 3rem;
+  padding: 10px 30px;
+  background-color: #03a9f1;
+  border-radius: 10px;
+  color: white;
 }
 </style>
